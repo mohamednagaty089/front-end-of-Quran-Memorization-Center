@@ -1,0 +1,19 @@
+public/quran-logo.svg
+  s_292f275cc5c06e::t_b06b38f105fa0d 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "bee978d8ce5748e1abe1ebec208737030f4479ad",
+  "prompts": {},
+  "sessions": {
+    "s_292f275cc5c06e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e3f3e4a2-7e31-4934-89e8-0b8c80f13086",
+        "model": "grok-4.5"
+      },
+      "human_author": "Mohamed.Nagaty <mohamed.nagaty@fawry.com>"
+    }
+  }
+}
