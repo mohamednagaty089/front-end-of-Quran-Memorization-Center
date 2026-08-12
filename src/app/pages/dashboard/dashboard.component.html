@@ -1,0 +1,120 @@
+<div class="dashboard-page space-y-8" dir="rtl">
+  <section class="dashboard-hero">
+    <div>
+      <p class="dashboard-hero__eyebrow">لوحة التحكم</p>
+      <h1 class="dashboard-hero__title">ملخص المركز</h1>
+      <p class="dashboard-hero__lead">
+        نظرة سريعة على الاشتراكات والطلاب النشطين والمنتهية اشتراكاتهم.
+      </p>
+    </div>
+    <button
+      type="button"
+      ubButton
+      size="sm"
+      class="dashboard-hero__refresh"
+      (click)="loadDashboardData()"
+      [disabled]="isLoading()"
+    >
+      {{ isLoading() ? 'جاري التحديث...' : 'تحديث البيانات' }}
+    </button>
+  </section>
+
+  <section class="dashboard-stats">
+    <article class="dash-card dash-card--total">
+      <div class="dash-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M8 7h8"></path>
+          <path d="M6 11h12"></path>
+          <path d="M9 15h6"></path>
+          <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+        </svg>
+      </div>
+      <p class="dash-card__label">إجمالي الاشتراكات</p>
+      <p class="dash-card__value">{{ totalSubscriptions() }}</p>
+      <p class="dash-card__hint">كل اشتراكات الطلاب المسجلة في النظام</p>
+    </article>
+
+    <article class="dash-card dash-card--active">
+      <div class="dash-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9.5" cy="7" r="3.5"></circle>
+          <path d="M17 11l2 2 4-4"></path>
+        </svg>
+      </div>
+      <p class="dash-card__label">الطلاب النشطون</p>
+      <p class="dash-card__value">{{ activeSubscriptions() }}</p>
+      <p class="dash-card__hint">اشتراكات سارية حالياً داخل المركز</p>
+    </article>
+
+    <article class="dash-card dash-card--expired">
+      <div class="dash-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="8"></circle>
+          <path d="M12 8v4l3 2"></path>
+        </svg>
+      </div>
+      <p class="dash-card__label">الاشتراكات المنتهية</p>
+      <p class="dash-card__value">{{ expiredSubscriptions() }}</p>
+      <p class="dash-card__hint">اشتراكات منتهية أو تجاوزت تاريخ الانتهاء</p>
+    </article>
+  </section>
+
+  <section class="dashboard-secondary">
+    <article class="dash-mini">
+      <p class="dash-mini__label">إجمالي الطلاب</p>
+      <p class="dash-mini__value">{{ totalMembers() }}</p>
+    </article>
+    <article class="dash-mini">
+      <p class="dash-mini__label">نسبة النشط</p>
+      <p class="dash-mini__value">
+        {{
+          totalSubscriptions()
+            ? ((activeSubscriptions() / totalSubscriptions()) * 100 | number: '1.0-0')
+            : 0
+        }}%
+      </p>
+    </article>
+    <a routerLink="/projects" ubButton size="sm" class="dash-link">إدارة الاشتراكات</a>
+    <a routerLink="/employee" ubButton size="sm" variant="outline" class="dash-link dash-link--outline"
+      >إدارة الطلاب</a
+    >
+  </section>
+
+  <section class="dashboard-list-card">
+    <header class="dashboard-list-card__head">
+      <div>
+        <h2>أحدث الاشتراكات</h2>
+        <p>آخر الاشتراكات المسجلة</p>
+      </div>
+      <span>{{ recentSubscriptions().length }} عنصر</span>
+    </header>
+
+    <ul class="dashboard-list" *ngIf="recentSubscriptions().length; else emptyList">
+      <li *ngFor="let item of recentSubscriptions()" class="dashboard-list__item">
+        <div class="dashboard-list__avatar" aria-hidden="true">
+          {{ memberDisplayName(item).charAt(0) }}
+        </div>
+        <div class="dashboard-list__body">
+          <strong>{{ memberDisplayName(item) }}</strong>
+          <span>
+            من {{ item.startDate || '—' }} إلى {{ item.endDate || '—' }}
+          </span>
+        </div>
+        <span
+          class="dashboard-list__status"
+          [class.is-active]="statusLabel(item) === 'نشط'"
+          [class.is-expired]="statusLabel(item) === 'منتهي'"
+        >
+          {{ statusLabel(item) }}
+        </span>
+      </li>
+    </ul>
+
+    <ng-template #emptyList>
+      <div class="dashboard-empty">
+        {{ isLoading() ? 'جاري تحميل البيانات...' : 'لا توجد اشتراكات حالياً.' }}
+      </div>
+    </ng-template>
+  </section>
+</div>

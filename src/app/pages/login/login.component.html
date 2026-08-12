@@ -1,0 +1,118 @@
+<app-floating-background
+  [primarySrc]="'/quran-logo.svg'"
+  [primaryAlt]="'إدارة مركز تحفيظ القرآن'"
+  [primaryWrapperClass]="
+    'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full opacity-20'
+  "
+></app-floating-background>
+
+<div class="login-page" dir="rtl">
+  <div class="login-atmosphere" aria-hidden="true">
+    <span class="login-atmosphere__orb login-atmosphere__orb--a"></span>
+    <span class="login-atmosphere__orb login-atmosphere__orb--b"></span>
+    <span class="login-atmosphere__grid"></span>
+  </div>
+
+  <div class="login-shell">
+    <section class="login-brand" aria-label="منارة القرآن">
+      <div class="login-logo login-logo--hero">
+        <img src="/quran-logo.svg" alt="شعار منارة القرآن" class="login-logo__image" />
+        <span class="login-logo__tag">قرآن</span>
+      </div>
+      <p class="login-brand__eyebrow">نظام إدارة مركز التحفيظ</p>
+      <h1 class="login-brand__title">منارة القرآن</h1>
+      <p class="login-brand__captain">مركز تحفيظ القرآن الكريم</p>
+      <p class="login-brand__lead">
+        منصة واحدة لإدارة الطلاب، الاشتراكات، الحضور، والباركود —
+        بكل وضوح وسهولة داخل المركز.
+      </p>
+
+      <ul class="login-features">
+        <li *ngFor="let feature of featureHighlights; let i = index" class="login-feature" [style.--delay]="i * 80 + 'ms'">
+          <span class="login-feature__mark" aria-hidden="true"></span>
+          <div>
+            <strong>{{ feature.title }}</strong>
+            <p>{{ feature.description }}</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="login-panel" aria-label="تسجيل الدخول">
+      <div class="login-panel__mobile-brand">
+        <div class="login-logo login-logo--mobile">
+          <img src="/quran-logo.svg" alt="شعار منارة القرآن" class="login-logo__image" />
+          <span class="login-logo__tag">قرآن</span>
+        </div>
+        <p class="login-brand__eyebrow">نظام إدارة مركز التحفيظ</p>
+        <h1 class="login-panel__mobile-title">منارة القرآن</h1>
+        <p class="login-brand__captain">مركز تحفيظ القرآن الكريم</p>
+      </div>
+
+      <header class="login-panel__head">
+        <div class="login-panel__badge" aria-hidden="true">
+          <img src="/quran-logo.svg" alt="" class="login-panel__badge-image" />
+        </div>
+        <div>
+          <h2>تسجيل الدخول</h2>
+          <p>ادخل لإدارة مركز منارة القرآن</p>
+        </div>
+      </header>
+
+      <form class="login-form" (submit)="$event.preventDefault()">
+        <div class="login-field">
+          <label for="test-account">حساب تجريبي</label>
+          <select
+            id="test-account"
+            [value]="selectedTestAccount"
+            (change)="onTestAccountSelect($any($event.target).value)"
+          >
+            <option value="">اختر حساباً للتجربة</option>
+            <option value="admin">{{ testAccounts.admin.label }}</option>
+            <option *ngIf="selectedTestAccount" value="clear">مسح الاختيار</option>
+          </select>
+        </div>
+
+        <div class="login-field">
+          <label for="username">اسم المستخدم</label>
+          <input
+            type="text"
+            id="username"
+            [(ngModel)]="loginObj.username"
+            name="username"
+            placeholder="أدخل اسم المستخدم"
+            required
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="login-field">
+          <label for="password">كلمة المرور</label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="loginObj.password"
+            name="password"
+            placeholder="أدخل كلمة المرور"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button
+          type="button"
+          (click)="onLogin()"
+          ubButton
+          size="lg"
+          class="login-submit"
+        >
+          دخول إلى النظام
+        </button>
+      </form>
+
+      <p class="login-footnote">
+        بالدخول فإنك توافق على سياسات الاستخدام داخل المركز.
+      </p>
+    </section>
+  </div>
+</div>
