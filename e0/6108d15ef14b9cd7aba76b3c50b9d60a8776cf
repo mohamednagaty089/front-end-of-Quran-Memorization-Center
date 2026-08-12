@@ -1,0 +1,27 @@
+src/app/app.routes.ts
+  s_292f275cc5c06e::t_fc6e684b643b30 1-137
+src/app/pages/attendance/attendance.component.ts
+  s_292f275cc5c06e::t_55eb92e32db2df 1-256
+src/app/pages/barcode-generator/barcode-generator.component.ts
+  s_292f275cc5c06e::t_433b2a4ca85e0a 1-186
+src/app/pages/employee/employee.component.html
+  s_292f275cc5c06e::t_8b019a76d056a3 1-817
+src/app/pages/employee/employee.component.ts
+  s_292f275cc5c06e::t_364bdfe3ad7f75 1-449
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e06108d15ef14b9cd7aba76b3c50b9d60a8776cf",
+  "prompts": {},
+  "sessions": {
+    "s_292f275cc5c06e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e3f3e4a2-7e31-4934-89e8-0b8c80f13086",
+        "model": "grok-4.5"
+      },
+      "human_author": "Mohamed.Nagaty <mohamed.nagaty@fawry.com>"
+    }
+  }
+}
