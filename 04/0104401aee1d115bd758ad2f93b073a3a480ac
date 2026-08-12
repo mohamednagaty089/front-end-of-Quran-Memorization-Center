@@ -1,0 +1,14 @@
+README.md
+  h_63a91c69e5d960 1-1182
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "040104401aee1d115bd758ad2f93b073a3a480ac",
+  "prompts": {},
+  "humans": {
+    "h_63a91c69e5d960": {
+      "author": "Mohamed.Nagaty <mohamed.nagaty@fawry.com>"
+    }
+  }
+}
